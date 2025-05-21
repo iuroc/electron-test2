@@ -30,9 +30,9 @@ module.exports = {
       config: {
         repository: {
           owner: 'iuroc',
-          name: 'bilidown'
+          name: 'electron-test2'
         },
-        prerelease: true
+        prerelease: true,
       }
     }
   ],
