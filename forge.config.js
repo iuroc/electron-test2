@@ -32,7 +32,8 @@ module.exports = {
           owner: 'iuroc',
           name: 'electron-test2'
         },
-        prerelease: true,
+        prerelease: false,
+        draft: false
       }
     }
   ],
