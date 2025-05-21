@@ -1,0 +1,59 @@
+name: Build Electron App
+
+on:
+  push:
+    tags:
+      - 'v*'  # 推送 v1.0.0 之类的标签触发构建
+  workflow_dispatch:  # 也允许手动触发
+
+jobs:
+  build-win:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm install
+      - name: Make (Windows)
+        run: npm run make
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: out/make/**
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm install
+      - name: Make (Linux)
+        run: npm run make
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-build
+          path: out/make/**
+
+  build-mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm install
+      - name: Make (macOS)
+        run: npm run make
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mac-build
+          path: out/make/**
